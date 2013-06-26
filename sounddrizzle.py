@@ -30,10 +30,10 @@ def main(args):
     output = get_filename_for_track(args, client, track)
 
     log.info('Downloading %s to %s' % (track.title, output))
-    # r = requests.get(stream.location)
-    #   log.debug('Response is %d bytes long', int(r.headers['Content-Length']))
-    #   with open(output, 'w+') as f:
-    #      f.write(r.content)
+    r = requests.get(stream.location)
+    log.debug('Response is %d bytes long', int(r.headers['Content-Length']))
+    with open(output, 'w+') as f:
+          f.write(r.content)
 
 
     log.info('Adding metadata...')
@@ -53,7 +53,7 @@ def get_track_by_url(client, url):
 
         if tracks:
             if len(tracks) > 1:
-                return tracks
+                return tracks[0]
             else:
                 return tracks[0]
         else:

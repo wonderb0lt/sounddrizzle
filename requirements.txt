@@ -1,6 +1,7 @@
 argparse==1.2.1
 docopt==0.6.1
 fudge==1.0.3
+mutagen==1.22
 requests==1.2.3
 simplejson==3.3.0
 soundcloud==0.3.6

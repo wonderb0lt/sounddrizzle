@@ -7,8 +7,8 @@ Usage:
 
 Options:
     --output <FILE> 			The output file (defaults to artist/title)
-    -v. --verbose                   More output!
-    -q, --quiet
+    -v, --verbose               More output!
+    -q, --quiet                 Less output!
 """
 import logging
 

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='SoundDrizzle',
-    version='0.0.2',
+    version='1.0.0',
     description='An easy client to add SoundCloud tracks to your offline collection',
     long_description=open('README.rst').read(),
     classifiers=[
@@ -19,10 +19,11 @@ setup(
         'mutagen',
         'Click',
         'requests',
+        'termcolor',
     ],
     py_modules=['sounddrizzle'],
     entry_points='''
         [console_scripts]
         drizzle=sounddrizzle:pour
-    '''
+    ''',
 )

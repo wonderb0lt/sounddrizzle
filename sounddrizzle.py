@@ -1,6 +1,7 @@
 import logging
 import urlparse
 import click
+import termcolor
 import mutagen.id3
 import mutagen.mp3
 import requests
@@ -10,17 +11,28 @@ client = soundcloud.Client(client_id='7b4b979cb9f47830a7bb2441f6d784c3')
 log = logging.getLogger('SoundDrizzle')
 
 
+def _bold(text):
+    return termcolor.colored(text, attrs=['bold'])
+
+
 @click.command()
 @click.argument('track_url')
 @click.argument('destination', required=False)
 def pour(track_url, destination=None):
-    track = resolve(track_url)
-    destination = destination or filename_for_track(track)
-    stream_url = client.get(track.stream_url, allow_redirects=False).location
+    try:
+        track = resolve(track_url)
+        destination = destination or filename_for_track(track)
+        track_details = client.get(track.stream_url, allow_redirects=False)
+        click.echo('Resolved link to {} by {}'.format(_bold(track.title), _bold(track.user['username'])))
 
-    # Behold, here be dragons!
-    download(stream_url, destination)
-    add_metadata(destination, track)
+        stream_url = track_details.location
+
+        download(stream_url, destination)
+        click.echo('Successfully downloaded track to {}'.format(_bold(destination)))
+        add_metadata(destination, track)
+        click.echo('Done! Enjoy listening offline!')
+    except Exception as e:
+        click.echo('Problem downloading track: {}'.format(e))
 
 
 def resolve(track_url):
@@ -60,8 +72,12 @@ def download(url, target_file, chunk_size=4096):
     r = requests.get(url, stream=True)
 
     with open(target_file, 'w+') as out:
-        for chunk in r.iter_content(chunk_size=chunk_size):
-            out.write(chunk)
+        # And this is why I love Armin Ronacher:
+        with click.progressbar(r.iter_content(chunk_size=chunk_size),
+                               int(r.headers['Content-Length'])/chunk_size,
+                               label='Downloading...') as chunks:
+            for chunk in chunks:
+                out.write(chunk)
 
 
 def add_metadata(track_file, track_data):

@@ -4,7 +4,7 @@ setup(
     name='SoundDrizzle',
     version='1.0.0',
     description='An easy client to add SoundCloud tracks to your offline collection',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

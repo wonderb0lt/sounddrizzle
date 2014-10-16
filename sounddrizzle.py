@@ -62,7 +62,7 @@ def filename_for_track(track):
     artist = track.user['permalink']
     title = track.title
 
-    return '{}-{}.mp3'.format(artist, title).lower().replace(' ', '_')
+    return '{}-{}.mp3'.format(artist, title).lower().replace(' ', '_').replace('/', '_')
 
 
 def download(url, target_file, chunk_size=4096):

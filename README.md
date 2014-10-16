@@ -7,13 +7,13 @@ This is nothing more than a simple downloader for SoundCloud so that you can lis
 You can use the script against SoundCloud URLs...
 
 ```bash
-$ drizzle https://soundcloud.com/ovey/duck-sauce-barba-streisand-ovey-remix-clip
+$ drizzle https://soundcloud.com/wearecc/dublabs-cc10-mix
 ```
 
 or perform a search on the API:
 
 ```bash
-$ drizzle "Archie V - Rainbow'n'Dash"
+$ drizzle "dublabs #cc10"
 ```
 
 For more options, call `drizzle --help`

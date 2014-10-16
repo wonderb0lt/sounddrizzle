@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='SoundDrizzle',
@@ -15,7 +15,14 @@ setup(
     author='Patrick Stegmann (aka. @wonderb0lt)',
     author_email='code@patrick-stegmann.de',
     url='https://github.com/wonderb0lt/sounddrizzle',
-    packages=['sounddrizzle'],
-    requires=['mutagen', 'docopt'],
-    scripts=['scripts/drizzle']
+    install_requires=[
+        'mutagen',
+        'Click',
+        'requests',
+    ],
+    py_modules=['sounddrizzle'],
+    entry_points='''
+        [console_scripts]
+        drizzle=sounddrizzle:pour
+    '''
 )

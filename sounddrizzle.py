@@ -7,7 +7,7 @@ import mutagen.mp3
 import requests
 import soundcloud
 
-client = soundcloud.Client(client_id='7b4b979cb9f47830a7bb2441f6d784c3')
+client = soundcloud.Client(client_id='<Your CLIENT_ID here>')
 log = logging.getLogger('SoundDrizzle')
 
 

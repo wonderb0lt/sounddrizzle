@@ -1,6 +1,6 @@
 # SoundDrizzle
 
-This is nothing more than a simple downloader for SoundCloud so that you can listen to your favorite tracks offline.
+This is nothing more than a simple downloader for SoundCloud so that you can listen to your favorite tracks offline. You'll have to create a SoundCloud app and put the id into sounddrizzle.py (if installed via pip, you'll have to find it in your filesystem)
 
 **It is your responsibility to check whether or not the track has rights reserved, and if you're allowed to download**
 
